@@ -11,14 +11,18 @@ const {
 const sendEmail = async (options) => {
 
   const transporter = nodemailer.createTransport({
-   
+
+    type: "SMTP",
     host: email_host,
     port: email_port,
+    secure: true,
     auth: {
       user: email_username,
       pass: email_password,
     },
-
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
   const mailOptions = {
