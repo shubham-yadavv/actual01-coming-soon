@@ -3,7 +3,7 @@ const sendEmail = require("../utils/sendEmail.utils");
 const fs = require("fs");
 
 const saveEmail = async (req, res) => {
-  let readFile = fs.readFileSync("./src/utils/email/test.html", "utf8");
+  let readFile = fs.readFileSync("./src/utils/email/early-access.html", "utf8");
   try {
     const email = new Email(req.body);
 
