@@ -11,9 +11,9 @@ const saveEmail = async (req, res) => {
     if (oldEmail) {
       await sendEmail({
         email: oldEmail.email,
-        subject: "Your regist",
+        subject: "Your registration has been confirmed.",
         html: readFile,
-        message: "Your registration has been confirmed.",
+        // message: "You are already subscribed to my website",
       });
     } else {
       await email.save();
