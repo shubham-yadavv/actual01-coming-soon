@@ -11,15 +11,15 @@ const saveEmail = async (req, res) => {
     if (oldEmail) {
       await sendEmail({
         email: oldEmail.email,
-        subject: "Welcome to my website",
+        subject: "Your regist",
         html: readFile,
-        // message: "You are already subscribed to my website",
+        message: "Your registration has been confirmed.",
       });
     } else {
       await email.save();
       await sendEmail({
         email: email.email,
-        subject: "Welcome to actual01",
+        subject: "Your registration has been confirmed.",
         html: readFile,
       });
       return res.status(201).json({ email });
