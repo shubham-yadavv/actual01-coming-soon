@@ -8,7 +8,8 @@ const emailSchema = new mongoose.Schema({
   },
   createdAt : {
     type: String,
-    default: moment().format("MMMM Do YYYY, h:mm:ss a")
+    default: moment().format("DD-MMMM-YYYY, h:mm:ss a")
+
   }
 });
 
