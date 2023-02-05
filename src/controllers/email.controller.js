@@ -13,14 +13,14 @@ const saveEmail = async (req, res) => {
     if (oldEmail) {
       await sendEmail({
         email: oldEmail.email,
-        subject: "Your registration has been confirmed.",
+        subject: "Welcome to actual01",
         html: readFile,
       });
     } else {
       await email.save();
       await sendEmail({
         email: email.email,
-        subject: "Your registration has been confirmed.",
+        subject: "Welcome to actual01",
         html: readFile,
       });
       return res.status(201).json({ email });
@@ -68,23 +68,22 @@ const deleteEmail = async (req, res) => {
   }
 };
 
-// send a email to all emails in the database one by one with a delay of 5 seconds
+// send a email to all emails in the database one by one with a delay of 5 seconds and stop from getting request timeout
 const sendEmailInBulk = async (req, res) => {
-  let eventHtml = fs.readFileSync("./src/utils/email/event.html", "utf8");
+  let readFile = fs.readFileSync("./src/utils/email/early-access.html", "utf8");
   try {
     const emails = await Email.find();
-
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     for (let i = 0; i < emails.length; i++) {
       await sendEmail({
         email: emails[i].email,
-        subject: "Your registration has been approved",
-        html : eventHtml,
+        subject: "Your registration has been confirmed.",
+        html: readFile,
       });
-      await util.promisify(setTimeout)(5000);
+      await delay(5000);
     }
-    res.status(200).json({ message: "Emails sent" });
+    res.status(200).json({ message: "Emails sent successfully" });
   } catch (error) {
-    console.log(error.message);
     res.status(500).json({ error: error.message });
   }
 };
