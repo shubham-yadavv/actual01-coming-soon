@@ -25,6 +25,16 @@ const sendEmail = async (options) => {
     },
   });
 
+
+  // var transporter = nodemailer.createTransport({
+  //   host: "sandbox.smtp.mailtrap.io",
+  //   port: 2525,
+  //   auth: {
+  //     user: "6785be9b4bf2d9",
+  //     pass: "c2a59563803024"
+  //   }
+  // });
+
   const mailOptions = {
     from: email_from,
     to: options.email,
