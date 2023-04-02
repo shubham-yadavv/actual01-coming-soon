@@ -11,22 +11,11 @@ const saveEmail = async (req, res) => {
 
     const oldEmail = await Email.findOne({ email: email.email });
     if (oldEmail) {
-      await sendEmail({
-        email: oldEmail.email,
-        subject: "Welcome to actual01",
-        html: readFile,
-      });
+      return res.status(400).json({ error: "Email already exists" });
     } else {
       await email.save();
-      await sendEmail({
-        email: email.email,
-        subject: "Welcome to actual01",
-        html: readFile,
-      });
       return res.status(201).json({ email });
     }
-
-    res.status(201).json({ email });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
